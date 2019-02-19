@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.cu": "cpp",
+        "*.cuh": "cpp",
+        "*.pyx": "python",
+        "ostream": "cpp",
+        "random": "cpp"
+    },
+
+}
