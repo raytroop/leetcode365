@@ -14,7 +14,7 @@ def binary_search(l, r):
             r = m   # new range [l, m)
         else:
             l = m + 1   # new range [m+1, r]
-    return l # or not found
+    return l # or not found, MAKE SURE RETURN `l`
 
 find the smallest index to satisfy `g(index)`
 */
