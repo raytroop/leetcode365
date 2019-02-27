@@ -38,7 +38,8 @@
         "utility": "cpp",
         "cstddef": "cpp",
         "algorithm": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "unordered_set": "cpp"
     },
 
 }
