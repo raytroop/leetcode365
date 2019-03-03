@@ -7,7 +7,7 @@ using std::vector;
 int rob(vector<int>& nums) {
     const int sz = nums.size();
     if(sz == 0)
-            return 0;
+        return 0;
     vector<int> dp(sz + 1);
     dp[0] = 0;
     dp[1] = nums[0];
