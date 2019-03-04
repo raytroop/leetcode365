@@ -18,7 +18,7 @@ int maxProductAfterCutting(int length){
     if(length < 2)
         return 1;
     vector<int> dp(length + 1);
-    dp[0] = 1;
+    dp[0] = 1;  // never used, just for convience.
     dp[1] = 1;
 
     for(int i = 2; i <= length; ++i){

@@ -27,3 +27,27 @@ private:
         traversal(root->right, ans);
     }
 };
+
+
+// 迭代实现 前序遍历
+#include <stack>
+using std::stack;
+
+vector<int> preorderTraversal(TreeNode* root) {
+    if(!root)
+        return {};
+    vector<int> ans;
+    stack<TreeNode*> q;
+    q.push(root);
+    while(!q.empty()){
+        TreeNode* node = q.top();
+        q.pop();
+        ans.push_back(node->val);
+        if(node->right)
+            q.push(node->right);
+        if(node->left)
+            q.push(node->left);
+    }
+
+    return ans;
+}

@@ -10,7 +10,7 @@ using std::string;
 //Approach 2: Using Dynamic Programming
 
 /*
-dp[i] represents the length of the longest valid substring ending at i-ith index
+dp[i] represents the length of the longest valid substring ending at i-th index
 1) if s[i] == ')' and s[i-1] == '('
     dp[i] = dp[i-2] + 2
 
