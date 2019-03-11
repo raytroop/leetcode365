@@ -25,6 +25,7 @@ public:
         return mergeTwoLists(sortList(head), sortList(mid));
     }
 private:
+    // https://zxi.mytechroad.com/blog/leetcode/leetcode-21-merge-two-sorted-lists/
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
         ListNode dummy = ListNode(0);
         ListNode* tail = &dummy;

@@ -21,7 +21,5 @@ int maximalSquare(vector<vector<char>>& matrix){
                 ans = std::max(dp[i][j], ans);
             }
 
-
-
     return ans * ans;
 }

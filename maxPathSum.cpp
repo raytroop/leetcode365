@@ -31,6 +31,6 @@ private:
         int r = std::max(0, maxPathSum(root->right, ans));
         ans = std::max(l + r + root->val, ans);     // scan all nodes
 
-        return std::max(l, r) + root->val;  // 1. root must be used 2. only one child branch can be used
+        return std::max(l, r) + root->val;  // 1. root must be used     2. only one child branch can be used
     }
 };
