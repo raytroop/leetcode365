@@ -13,16 +13,18 @@ public:
         // 0 or 1 element, we are done.
         if(!head || !head->next)
             return head;
+
+        ListNode* prev = nullptr;
         ListNode* slow = head;
-        ListNode* fast = head->next;
+        ListNode* fast = head;
         while(fast && fast->next){
+            prev = slow;
             slow = slow->next;
             fast = fast->next->next;
         }
-
-        ListNode* mid = slow->next;
-        slow->next = nullptr;
-        return mergeTwoLists(sortList(head), sortList(mid));
+        if(prev)
+            prev->next = nullptr;
+        return mergeTwoLists(sortList(head), sortList(slow));
     }
 private:
     // https://zxi.mytechroad.com/blog/leetcode/leetcode-21-merge-two-sorted-lists/
@@ -44,3 +46,22 @@ private:
         return dummy.next;
     }
 };
+
+#include <vector>
+using std::vector;
+
+ListNode* createList(vector<int> nums){
+    ListNode dummy(0);
+    ListNode* tail = &dummy;
+    for(int x: nums){
+        tail->next = new ListNode(x);
+        tail = tail->next;
+    }
+
+    return dummy.next;
+}
+int main(){
+    ListNode* head = createList({4,2,1,3});
+    Solution sol;
+    sol.sortList(head);
+}

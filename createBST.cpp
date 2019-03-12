@@ -21,7 +21,7 @@ public:
     }
 private:
     TreeNode* insert(TreeNode* root, int val){
-        if(root == nullptr)
+        if(root == nullptr)     // empty position
             return new TreeNode(val);
 
         if(val <= root->val)

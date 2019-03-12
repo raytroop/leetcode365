@@ -4,7 +4,7 @@
 #include <algorithm>
 using std::vector;
 
-
+// http://zxi.mytechroad.com/blog/searching/leetcode-39-combination-sum/
 class Solution {
 public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
@@ -23,9 +23,6 @@ private:
             ans.push_back(curr);
             return;
         }
-
-        if(target < candidates[index])
-            return;
 
         for(int i = index; i < n_; ++i){
             if(target < candidates[i])
