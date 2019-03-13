@@ -23,6 +23,8 @@ find the smallest index to satisfy `g(index)`
 #include <algorithm>
 using std::vector;
 
+// https://zxi.mytechroad.com/blog/algorithms/binary-search/leetcode-4-median-of-two-sorted-arrays/
+// Binary Search
 double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2)
 {
     const int n1 = nums1.size();
@@ -31,7 +33,7 @@ double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2)
     if (n1 > n2)
         return findMedianSortedArrays(nums2, nums1);
 
-    const int k = (n1 + n2 + 1) / 2;
+    const int k = (n1 + n2 + 1) / 2;    // ceil, ceil((n1 + n2) / 2)
 
     int l = 0;
     int r = n1;

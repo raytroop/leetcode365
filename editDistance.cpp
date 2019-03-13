@@ -13,13 +13,13 @@ public:
     int minDistance(string word1, string word2) {
         int l1 = word1.length();
         int l2 = word2.length();
+        // the first row/column is just for convience and NOT USED
         vector<vector<int>> dp(l1 + 1, vector<int>(l2 + 1, -1));
 
         return minDistance(word1, word2, dp, l1, l2);
     }
 private:
-    int len1_;
-    int len2_;
+    // minDistance from word1[0:l1-1] to word2[0:l2-1]
     int minDistance(string& word1, string& word2, vector<vector<int>>& dp, int l1, int l2) {
         if(l1 == 0)
             return l2;

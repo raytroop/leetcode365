@@ -12,9 +12,10 @@ using std::unordered_set;
 using std::unordered_map;
 
 //http://zxi.mytechroad.com/blog/searching/leetcode-126-word-ladder-ii/
+// BFS to construct the graph + DFS to extract the paths
 class Solution {
 public:
-    // BFS
+    // BFS to construct the graph
     vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
         beginWord_ = beginWord;
         endWord_ = endWord;
@@ -28,9 +29,10 @@ public:
         unordered_map<string, vector<string>> parents;
         queue<string> q; q.push(beginWord);
         bool found = false;
+        unordered_set<string> viewed;
 
         while(!q.empty() && !found){
-            unordered_set<string> viewed;
+            viewed.clear();
             for(int sz = q.size(); sz > 0; --sz){
                 const string s = q.front(); q.pop();
                 string ss = s;
@@ -66,7 +68,7 @@ public:
         return ans;
     }
 private:
-    //  DFS
+    //  DFS to extract the paths
     string beginWord_;
     string endWord_;
     void getPaths(const string& word, vector<string>& curr, const unordered_map<string, vector<string>>& parents, vector<vector<string>>& ans){

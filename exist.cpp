@@ -29,15 +29,10 @@ private:
     int cols_;
     vector<int> dirs{0, 1, 0, -1, 0};
     bool exist(vector<vector<char>>& board, vector<vector<bool>>& viewed, string& word, int index, int r, int c){
-        if(index == word.length() - 1)
-            if(board[r][c] != word[index])
-                return false;
-            else{
-                return true;
-            }
-
         if(board[r][c] != word[index])
             return false;
+        if(index == word.length() - 1)
+            return true;
 
         for(int i = 0; i < 4; ++i){
             int newI = dirs[i] + r;

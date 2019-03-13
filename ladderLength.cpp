@@ -8,6 +8,8 @@ using std::string;
 using std::vector;
 using std::set;
 
+// https://zxi.mytechroad.com/blog/searching/127-word-ladder/
+// BFS with queue
 int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
     const int n = beginWord.length();
     set<string> tfsWord(wordList.begin(), wordList.end());
@@ -26,15 +28,20 @@ int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
             for(int i = 0; i < n; ++i){
                 const char c = s[i];
                 for(int cc = 'a'; cc <= 'z'; ++cc){
+                    // skip the same word
                     if(cc == c)
                         continue;
                     s[i] = cc;
+                    // Found the solution
                     if(s == endWord)
                         return ans;
+                    // Not in dict, skip it
                     if(!tfsWord.count(s))
                         continue;
-                    tfsWord.erase(s);
+                    // Add new word into queue
                     q.push(s);
+                    // Remove new word from dict
+                    tfsWord.erase(s);
                 }
                 s[i] = c;
             }
