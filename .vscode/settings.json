@@ -40,7 +40,8 @@
         "algorithm": "cpp",
         "queue": "cpp",
         "unordered_set": "cpp",
-        "cstdarg": "cpp"
+        "cstdarg": "cpp",
+        "set": "cpp"
     },
 
 }
