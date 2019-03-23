@@ -40,15 +40,15 @@ double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2)
     // binary search in nums1
     while (l < r)
     {
-        // fetch `mid` numbers from nums1, `k - mid` numbers from nums2
-        // nums1[0, 1, 2, ...       mid-1 | mid, ...]
-        // nums2[0, 1, 2, ... k - mid - 1       ...     ]
-
-        const int mid = l + (r - l) / 2;
-        if (nums1[mid] >= nums2[k - mid - 1]) // `mid` worked as index
-            r = mid;
+        // fetch `m1` numbers from nums1, `k - m1` numbers from nums2
+        // nums1[0, 1, 2, ...       m1-1 | m1, ...]
+        // nums2[0, 1, 2, ... k - m1 - 1 | m2, ...]
+        const int m1 = l + (r - l) / 2;
+        const int m2 = k - m1;
+        if (nums1[m1] >= nums2[m2 - 1]) // `mid` worked as index
+            r = m1;
         else
-            l = mid + 1;
+            l = m1 + 1;
     }
 
     const int m1 = l;   // `l` is the smallest index so that  `nums1[index] >= nums2[k - index - 1]`
