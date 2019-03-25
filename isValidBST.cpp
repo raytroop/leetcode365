@@ -25,8 +25,8 @@ private:
     }
 };
 
-
-class Solution {
+// Do an in-order traversal, the numbers should be sorted, thus we only need to compare with the previous number.
+class Solution_2 {
 public:
     bool isValidBST(TreeNode* root) {
         prev_ = nullptr;

@@ -35,20 +35,20 @@ using std::queue;
 using std::vector;
 
 bool isSymmetric(TreeNode* root){
-    queue<TreeNode*> s;
-    s.push(root);
-    while(!s.empty()){
-        const int n = s.size();
+    queue<TreeNode*> q;
+    q.push(root);
+    while(!q.empty()){
+        const int n = q.size();
         vector<int> curr;
         for(int i = 0; i < n; ++i){
-            TreeNode* node = s.front();
-            s.pop();
+            TreeNode* node = q.front();
+            q.pop();
 
             if(node == nullptr)
                 curr.push_back(INT_MAX);
             else{
-                s.push(node->left);
-                s.push(node->right);
+                q.push(node->left);
+                q.push(node->right);
                 curr.push_back(node->val);
             }
         }

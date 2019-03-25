@@ -7,7 +7,7 @@ using std::priority_queue;
 vector<int> LeastTopK(vector<int>& numbers, int k){
     if(k > numbers.size())
         return {};
-    priority_queue<int> q;
+    priority_queue<int> q;  // max-heap
     for(auto c: numbers){
         q.push(c);
         if(q.size() > k)
