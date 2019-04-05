@@ -19,6 +19,7 @@ length 6.*/
 
 #include <vector>
 #include <string>
+#include <algorithm>
 using std::vector;
 using std::string;
 
@@ -27,14 +28,17 @@ int LCSubStr(string &X, string &Y){
     const int col = Y.length();
 
     vector<vector<int>> dp(row + 1, vector<int>(col + 1, 0));
+    int result = 0;
     for(int i = 1; i <= row; ++i){
         for(int j = 1; j <= col; ++j){
-            if(X[i-1] == Y[j-1])
+            if(X[i-1] == Y[j-1]){
                 dp[i][j] = 1 + dp[i-1][j-1];
+                result = std::max(result, dp[i][j]);
+            }
             else
                 dp[i][j] = 0;
         }
     }
 
-    return dp[row][col];
+    return result;
 }
