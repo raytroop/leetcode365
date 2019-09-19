@@ -1,25 +1,27 @@
 class Node:
-    #节点类
+    # 节点类
     def __init__(self, data):
         self.data = data
         self.parent = None
         self.left = None
         self.right = None
+
+
 class Tree:
-    #树类
+    # 树类
     def __init__(self):
         self.root = None
 
     def add(self, data):
         # 为树加入节点
-        node  = Node(data)
-        if self.root is None:      #如果树为空，就对根节点赋值
+        node = Node(data)
+        if self.root is None:  # 如果树为空，就对根节点赋值
             self.root = node
         else:
             myQueue = []
             treeNode = self.root
             myQueue.append(treeNode)
-            while myQueue:              #对已有的节点进行层次遍历
+            while myQueue:  # 对已有的节点进行层次遍历
                 treeNode = myQueue.pop(0)
                 if not treeNode.left:
                     treeNode.left = node
@@ -34,7 +36,7 @@ class Tree:
                     myQueue.append(treeNode.right)
 
 ########################## 前序遍历 #######################
-#递归实现 前序遍历
+# 递归实现 前序遍历
 def pre_order_recursion(root):
     if root is None:
         return
@@ -42,7 +44,7 @@ def pre_order_recursion(root):
     pre_order_recursion(root.left)
     pre_order_recursion(root.right)
 
-#迭代实现 前序遍历
+# 迭代实现 前序遍历
 def pre_order_iterative(root):
     stack = []
     if root is not None:
@@ -57,7 +59,7 @@ def pre_order_iterative(root):
             stack.append(node.left)
 
 ########################## 中序遍历 #######################
-#递归实现 中序遍历
+# 递归实现 中序遍历
 def in_order_recursion(root):
     if root is None:
         return
@@ -65,9 +67,10 @@ def in_order_recursion(root):
     print(root.data)
     in_order_recursion(root.right)
 
-#迭代实现 中序遍历
+# 迭代实现 中序遍历
 def in_order_iterative(root):
     stack = []
+
     def goAlongLeftBranch(root, stack):
         while root is not None:
             stack.append(root)
@@ -85,10 +88,10 @@ def in_order_iterative(root):
     while stack:
         node = stack.pop()
         print(node.data)
-        goAlongLeftBranch(node.right)
+        goAlongLeftBranch(node.right, stack)
 
 ########################## 后序遍历 #######################
-#递归实现 后序遍历
+# 递归实现 后序遍历
 def post_order_recursion(root):
     if root is None:
         return
@@ -97,9 +100,10 @@ def post_order_recursion(root):
     print(root.data)
 
 
-#迭代实现 后序遍历
+# 迭代实现 后序遍历
 def post_order_iterative(root):
     stack = []
+
     def gotoHLVFL(s):
         '''
         在以S栈顶节点为根的子树中，找到最高左侧可见叶节点,
@@ -108,7 +112,7 @@ def post_order_iterative(root):
         node = s[-1]
         while node is not None:            # 自顶而下，反复检查当前节点（即栈顶)
             if node.left is not None:      # 尽可能向左
-                if node.right is not None: # 若有右孩子，优先入栈
+                if node.right is not None:  # 若有右孩子，优先入栈
                     s.append(node.right)
                 s.append(node.left)        # 然后才转至左孩子
                 node = s[-1]
@@ -129,30 +133,30 @@ def post_order_iterative(root):
         print(root.data)
 
 
-
 ########################## 层次遍历 #######################
-#队列实现层次遍历（非递归）
+# 队列实现层次遍历（非递归）
 def level_order_iterative(root):
-        if root is None:
-            return
-        queue = []
-        node = root
-        queue.append(node)
-        while queue:
-            node = queue.pop(0)
-            print(node.data)
-            if node.left:
-                queue.append(node.left)
-            if node.right:
-                queue.append(node.right)
+    if root is None:
+        return
+    queue = []
+    node = root
+    queue.append(node)
+    while queue:
+        node = queue.pop(0)
+        print(node.data)
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+
 
 #########################################################
 if __name__ == '__main__':
-    #主函数
+    # 主函数
     datas = list('ABCDE')
-    tree = Tree()          #新建一个树对象
+    tree = Tree()  # 新建一个树对象
     for data in datas:
-        tree.add(data)      #逐个加入树的节点
+        tree.add(data)  # 逐个加入树的节点
     '''
     PRE-ORDER:      A B D E C
     IN-ORDER:       D B E A C
@@ -179,7 +183,3 @@ if __name__ == '__main__':
 
     print('\n\n队列实现层次遍历：')
     level_order_iterative(tree.root)
-
-
-
-
