@@ -19,7 +19,7 @@ int kthSmallest(vector<vector<int>>& matrix, int k) {
 
         if(total >= k)
             r = mid;
-        else
+        else]
             l = mid + 1;
     }
 
