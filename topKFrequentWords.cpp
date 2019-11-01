@@ -37,3 +37,43 @@ vector<string> topKFrequentWords(vector<string>& words, int k){
 
     return ans;
 }
+
+
+class Solution {
+public:
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        unordered_map<string, int> counter;
+        for (auto s: words)
+            counter[s] += 1;
+
+        // decltype(cmp) not work
+        priority_queue<std::pair<string, int>, vector<std::pair<string, int>>,
+                std::function<bool(std::pair<string, int>&, std::pair<string, int>&)>> minheap(cmp);
+        for (auto& p: counter) {
+            minheap.push(p);
+            if (minheap.size() > k)
+                minheap.pop();
+        }
+
+        vector<string> ans;
+        while (!minheap.empty()) {
+            ans.push_back(minheap.top().first);
+            minheap.pop();
+        }
+
+
+        std::reverse(ans.begin(), ans.end());
+        return ans;
+    }
+
+private:
+    // CAUTION `static` is important
+    static bool cmp(std::pair<string, int>& s1, std::pair<string, int>& s2) {
+        if (s1.second > s2.second)
+            return true;
+        if (s1.second == s2.second && s1.first < s2.first)
+            return true;
+        else
+            return false;
+    }
+};
