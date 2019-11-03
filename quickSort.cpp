@@ -8,31 +8,53 @@
 */
 
 #include <vector>
+#include <iostream>
 #include <random>
+using std::cout;
+using std::endl;
 using std::vector;
 
-// lo, hi inclusive
-int partion(vector<int>& nums, int lo, int hi){
-    std::swap(nums[lo], nums[lo + std::rand() % (hi - lo + 1)]);
-    int pivot = nums[lo];
-    while(lo < hi){
-        while(lo < hi && pivot <= nums[hi])
-            --hi;
-        nums[lo] = nums[hi];
-
-        while(lo < hi && pivot >= nums[lo])
-            ++lo;
-        nums[hi] = nums[lo];
+class Solution {
+public:
+    void quicksort(vector<int>& nums) {
+        quicksort(nums, 0, nums.size() - 1);
     }
 
-    nums[lo] = pivot;
-    return lo;
-}
+private:
+    void quicksort(vector<int>& nums, int lo, int hi){
+        if(hi - lo + 1 < 2)
+            return; // already ordinal
+        int mid = partion(nums, lo, hi);
+        partion(nums, lo, mid - 1);
+        partion(nums, mid + 1, hi);
+    }
 
-void quicksort(vector<int>& nums, int lo, int hi){
-    if(hi - lo + 1 < 2)
-        return; // already ordinal
-    int mid = partion(nums, lo, hi);
-    partion(nums, lo, mid - 1);
-    partion(nums, mid + 1, hi);
+    // lo, hi inclusive
+    int partion(vector<int>& nums, int lo, int hi){
+        std::swap(nums[lo], nums[lo + std::rand() % (hi - lo + 1)]);
+        int pivot = nums[lo];
+        while(lo < hi){
+            while(lo < hi && pivot <= nums[hi])
+                --hi;
+            nums[lo] = nums[hi];
+
+            while(lo < hi && pivot >= nums[lo])
+                ++lo;
+            nums[hi] = nums[lo];
+        }
+
+        nums[lo] = pivot;
+        return lo;
+    }
+};
+
+int main() {
+    vector<int> nums{1,213,65,5,343};
+    Solution solver;
+    solver.quicksort(nums);
+    for (auto n: nums)
+        cout << n << '\t';
+    cout << endl;
+
+    return 0;
 }
