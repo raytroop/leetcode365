@@ -25,8 +25,8 @@ private:
         if(hi - lo + 1 < 2)
             return; // already ordinal
         int mid = partion(nums, lo, hi);
-        partion(nums, lo, mid - 1);
-        partion(nums, mid + 1, hi);
+        quicksort(nums, lo, mid - 1);
+        quicksort(nums, mid + 1, hi);
     }
 
     // lo, hi inclusive
@@ -49,7 +49,7 @@ private:
 };
 
 int main() {
-    vector<int> nums{1,213,65,5,343};
+    vector<int> nums{1,213,65,5,343,4542,32,3897};
     Solution solver;
     solver.quicksort(nums);
     for (auto n: nums)
