@@ -3,61 +3,35 @@
 #include <vector>
 using std::vector;
 
-class Solution {
-public:
-    int search(vector<int>& nums, int target) {
-        if(nums.empty())
-            return -1;
-        const int n = nums.size();
-        int minIx = findMinIndex(nums);
-        if(minIx == 0)
-            return binarySearch(nums, target, 0, n);
-        if(target >= nums[0] && target <= nums[minIx-1])
-            return binarySearch(nums, target, 0, minIx);
-        if(target >= nums[minIx] && target <= nums[n-1])
-            return binarySearch(nums, target, minIx, n);
+/*
+http://bangbingsyb.blogspot.com/2014/11/leetcode-search-in-rotated-sorted-array.html
+A[mid] =  target, 返回mid，否则
 
-        return -1;
+(1) A[mid] < A[end]: A[mid+1 : end] sorted
+        A[mid] < target <= A[end]  右半，否则左半。
 
-    }
+(2) A[mid] > A[end] : A[start : mid-1] sorted
+        A[start] <= target < A[mid] 左半，否则右半。
+*/
 
-private:
-    int binarySearch(vector<int>& nums, int target, int l, int r){
-        while(l < r){
-            int mid = l + (r - l) / 2;
-            if(nums[mid] == target)
-                return mid;
+int search(vector<int>& nums, int target) {
+    int n = nums.size();
+    int start = 0, end = n - 1;
+    while (start <= end) {
+        int mid = start + (end - start) / 2;
+        if (nums[mid] == target) return mid;
 
-            if(nums[mid] > target)
-                r = mid;
+        if (nums[mid] < nums[end]) { // right half sorted
+            if (target > nums[mid] && target <= nums[end])
+                start = mid + 1;
             else
-                l = mid + 1;
-        }
-
-        return -1;
-    }
-
-// https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/solution/
-/* Algorithm
-1. Find the mid element of the array.
-2. If mid element > first element of array this means that we need to look for the inflection point on the right of mid.
-3. If mid element < first element of array this that we need to look for the inflection point on the left of mid. */
-    int findMinIndex(vector<int> &nums)
-    {
-        int l = 0;
-        int r = nums.size();
-        // the list has just one element OR there is no rotation
-        if (r == 1 || nums[0] < nums[r - 1])
-            return l;
-
-        while (l < r)
-        {
-            int mid = l + (r - l) / 2;
-            if (nums[mid] < nums[0])
-                r = mid;
+                end = mid - 1;
+        } else {  // left half sorted
+            if (target >= nums[start] && target < nums[mid])
+                end = mid - 1;
             else
-                l = mid + 1;
+                start = mid + 1;
         }
-        return l;
     }
-};
+    return -1;
+}

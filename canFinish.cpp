@@ -24,7 +24,7 @@ public:
         return true;
     }
 private:
-    // if circule, return true
+    // if circle, return true
     bool dfs(int idx, vector<int>& states, vector<vector<int>>& graph){
         if(states[idx] == 1)
             return true;
