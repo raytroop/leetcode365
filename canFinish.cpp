@@ -26,15 +26,13 @@ public:
 private:
     // if circle, return true
     bool dfs(int idx, vector<int>& states, vector<vector<int>>& graph){
-        if(states[idx] == 1)
-            return true;
-        if(states[idx] == 2)
-            return false;
+        if(states[idx] == 1) return true;
+        if(states[idx] == 2) return false;
 
         states[idx] = 1;
         for(const int t : graph[idx])
-            if(dfs(t, states, graph))
-                return true;
+            if(dfs(t, states, graph)) return true;
+
         states[idx] = 2;
 
         return false;

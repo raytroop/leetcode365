@@ -14,7 +14,7 @@ length 4.
 
 Input : X = "zxabcdezy", y = "yzabcdezx"
 Output : 6
-The longest common substring is "abcdez" and is of
+The longest common substring is "abcdez" and is ofA robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 length 6.*/
 
 #include <vector>
