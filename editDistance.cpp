@@ -13,7 +13,7 @@ public:
     int minDistance(string word1, string word2) {
         int l1 = word1.length();
         int l2 = word2.length();
-        // the first row/column is just for convience and NOT USED
+        // the first row/column is just for convenience and NOT USED
         vector<vector<int>> dp(l1 + 1, vector<int>(l2 + 1, -1));
 
         return minDistance(word1, word2, dp, l1, l2);

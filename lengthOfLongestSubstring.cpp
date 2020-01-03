@@ -14,7 +14,7 @@ int lengthOfLongestSubstring(string s) {
     for(int i = 0; i < n; ++i){
         if(dict.count(s[i]) && dict[s[i]] >= start)
             start = dict[s[i]] + 1;
-        ans = std::max(ans, i -  start + 1);
+        ans = std::max(ans, i - start + 1);
         dict[s[i]] = i;
     }
 
